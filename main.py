@@ -4,8 +4,15 @@
 
 from TextProcess import *
 from GenCertificateInfo import CertificateInformation
+from InfoSource.dealExcel import read_xlsx
 
-newCert = CertificateInformation()
+sourceFP = 'Source/NameList/nameList.xlsx'
+
+awardInfo = read_xlsx(sourceFP)
+newCert = CertificateInformation(awardInfo[18])
+
+
+
 newCert.addText()
 
 save_adress = 'zout.png'

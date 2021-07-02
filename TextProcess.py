@@ -1,12 +1,12 @@
 from docx.shared import Pt, RGBColor
 from PIL import Image, ImageDraw, ImageFont
 
-tempFN = r'BlankTemp.png'
+tempFN = r'Source/Template/BlankTemp.png'
 tempImg = Image.open(tempFN)
 tempDraw = ImageDraw.Draw(tempImg)
 
 # 定义字体
-STKaiti = './STKaiti.ttf'
+STKaiti = 'Source/Fonts/STKaiti.ttf'
 
 class TextStyle:
     font_fp = STKaiti
