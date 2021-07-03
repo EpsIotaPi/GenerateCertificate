@@ -45,6 +45,7 @@ class bodyStyle(TextStyle):
        font = self.makeFont()
        img.text((x, y), text, font=font, fill=self.color)
 
+
 class infoStyle(TextStyle):
    size = 46
    color = RGBColor(58, 85, 112)

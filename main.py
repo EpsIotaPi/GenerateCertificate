@@ -9,7 +9,7 @@ from InfoSource.dealExcel import read_xlsx
 sourceFP = 'Source/NameList/nameList.xlsx'
 
 awardInfo = read_xlsx(sourceFP)
-newCert = CertificateInformation(awardInfo[18])
+newCert = CertificateInformation(awardInfo[0])
 
 
 
