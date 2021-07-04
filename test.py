@@ -1,15 +1,12 @@
-import fitz
-import os
-import glob
 
-def png2pdf(sourcePath='./', desPath='./out'):
-    imgdoc = fitz.open(sourcePath)
-    pdfBytes = imgdoc.convert_to_pdf()
-    imgpdf = fitz.open('pdf', pdfBytes)
-    if desPath[-4:] != '.pdf':
-        desPath += '.pdf'
-    imgpdf.save(filename=desPath)
+from PIL import Image, ImageDraw, ImageFont
 
+text = '杭州师范大学作品《智能社区健康管理系统》在2021年'
 
+testFN = r'Source/Template/BlankTemp.png'
+testImg = Image.open(testFN)
+testDraw = ImageDraw.Draw(testImg)
+STKaiti = 'Source/Fonts/STKaiti.ttf'
+body_font = ImageFont.truetype(STKaiti, size=75)
 
-png2pdf(sourcePath='./zout.png', desPath='./outPDF/zout')
+print(testDraw.textsize(text, font=body_font)[0])
