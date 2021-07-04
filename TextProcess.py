@@ -1,9 +1,5 @@
-from docx.shared import Pt, RGBColor
-from PIL import Image, ImageDraw, ImageFont
-
-tempFN = r'Source/Template/BlankTemp.png'
-tempImg = Image.open(tempFN)
-tempDraw = ImageDraw.Draw(tempImg)
+from docx.shared import RGBColor
+from PIL import ImageFont
 
 # 定义字体
 STKaiti = 'Source/Fonts/STKaiti.ttf'
@@ -25,7 +21,7 @@ class awardStyle(TextStyle):
        self.x = x
        self.y = y
 
-   def addText(self, text, img=tempDraw):
+   def addText(self, text, img):
        x = self.x
        y = self.y
        font = self.makeFont()
@@ -39,7 +35,7 @@ class bodyStyle(TextStyle):
        self.x = x
        self.y = y
 
-   def addText(self, text, img=tempDraw):
+   def addText(self, text, img):
        x = self.x
        y = self.y
        font = self.makeFont()
@@ -54,7 +50,7 @@ class infoStyle(TextStyle):
        self.x = x
        self.y = y
 
-   def addText(self, text, img=tempDraw):
+   def addText(self, text, img):
        x = self.x
        y = self.y
        font = self.makeFont()
@@ -68,7 +64,7 @@ class dateStyle(TextStyle):
        self.x = x
        self.y = y
 
-   def addText(self, text, img=tempDraw):
+   def addText(self, text, img):
        x = self.x
        y = self.y
        font = self.makeFont()
