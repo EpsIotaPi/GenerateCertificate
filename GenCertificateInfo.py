@@ -25,6 +25,7 @@ class CertificateInformation:
     id = '占位符'
 
     def __init__(self, entrie:Entries):
+        self.entrie = entrie
         self.AwardClass =  entrie.Entries_award
         self.bodyText = entrie.Entries_school + '作品《' + entrie.Entries_name + '》在 2021 年（第 14 届）中国大学生计算机设计大赛浙江省级赛中荣获'
         self.author = nameSplic(entrie.Entries_author)

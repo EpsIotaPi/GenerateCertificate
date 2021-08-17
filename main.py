@@ -5,6 +5,8 @@
 from GenCertificateInfo import *
 from InfoSource.dealExcel import read_xlsx
 import fitz
+import os
+os.mkdir("4C2021/")
 
 def png2pdf(sourcePath='./', desPath='./out'):
     imgdoc = fitz.open(sourcePath)
@@ -30,7 +32,14 @@ for i in range(len(awardInfo)):
     newCert = CertificateInformation(awardInfo[i])
     newCert.addText(draw=tempDraw)
     tempImg.save(tempSavePath)
-    filename = newCert.id
+    schoolName = newCert.entrie.Entries_school
+    certID = newCert.id
+    dirPath = "4C2021/{}/".format(schoolName)
+    filePath = dirPath + "{0}_{1}".format(schoolName, certID)
 
-    png2pdf(sourcePath='zout.png', desPath='outPDF/'+filename)
-    print("荣誉证书制作完成_" + filename)
+    if os.path.isdir(dirPath) == False:
+        os.mkdir(dirPath)
+        print("mkdir {}".format(dirPath))
+
+    png2pdf(sourcePath='zout.png', desPath=filePath)
+    print("荣誉证书制作完成_" + certID)
