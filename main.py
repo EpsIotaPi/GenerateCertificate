@@ -20,12 +20,13 @@ tempFN = r'Source/Template/BlankTemp.png'
 
 
 
-sourceFP = 'Source/NameList/nameList.xlsx'
+sourceFP = 'Source/NameList/20210817.xlsx'
 tempSavePath = 'zout.png'
 
 awardInfo = read_xlsx(sourceFP)
 
 for i in range(len(awardInfo)):
+
     tempImg = Image.open(tempFN)
     tempDraw = ImageDraw.Draw(tempImg)
 
@@ -42,4 +43,4 @@ for i in range(len(awardInfo)):
         print("mkdir {}".format(dirPath))
 
     png2pdf(sourcePath='zout.png', desPath=filePath)
-    print("荣誉证书制作完成_" + certID)
+    print("荣誉证书制作完成_" + certID + "_{}/{}".format(i+1, len(awardInfo)))

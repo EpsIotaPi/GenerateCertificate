@@ -14,3 +14,9 @@
 import os.path
 
 print(os.path.isdir("./4C2021/"))
+
+Entries_name = "今天《天》气好"
+if Entries_name[0] == '《' and Entries_name[-1] == '》':
+    Entries_name = Entries_name[1:-1]
+
+print(Entries_name)

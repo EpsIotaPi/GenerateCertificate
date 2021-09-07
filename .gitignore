@@ -3,3 +3,5 @@ venvs_py/*
 .idea/*
 __pycache__/*
 test.py
+Source/NameList/*
+4C2021/*
