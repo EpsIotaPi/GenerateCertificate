@@ -1,12 +1,14 @@
 '''
-批量生产电子奖状
+批量制作电子奖状
 '''
 
 from GenCertificateInfo import *
 from InfoSource.dealExcel import read_xlsx
 import fitz
 import os
-os.mkdir("4C2021/")
+from config import templateInfo, configuration
+
+
 
 def png2pdf(sourcePath='./', desPath='./out'):
     imgdoc = fitz.open(sourcePath)
@@ -16,31 +18,39 @@ def png2pdf(sourcePath='./', desPath='./out'):
         desPath += '.pdf'
     imgpdf.save(filename=desPath)
 
-tempFN = r'Source/Template/BlankTemp.png'
+tempFileName = templateInfo.tempFileName
+tempSavePath = templateInfo.tempSavePath
+nameList = configuration.NameList
+pdfSavePath = configuration.pdfSavePath
 
+if os.path.exists(pdfSavePath):
+    os.rmdir(pdfSavePath)
+    print("文件夹 {} 已被清空".format(pdfSavePath))
+else:
+    os.mkdir(pdfSavePath)
+    print("创建文件夹 {}".format(pdfSavePath))
 
+CertInfo = read_xlsx(nameList)
 
-sourceFP = 'Source/NameList/20210817.xlsx'
-tempSavePath = 'zout.png'
+for i in range(len(CertInfo)):
 
-awardInfo = read_xlsx(sourceFP)
-
-for i in range(len(awardInfo)):
-
-    tempImg = Image.open(tempFN)
+    tempImg = Image.open(tempFileName)
     tempDraw = ImageDraw.Draw(tempImg)
 
-    newCert = CertificateInformation(awardInfo[i])
+    newCert = CertificateInformation(CertInfo[i])
     newCert.addText(draw=tempDraw)
     tempImg.save(tempSavePath)
     schoolName = newCert.entrie.Entries_school
     certID = newCert.id
-    dirPath = "4C2021/{}/".format(schoolName)
-    filePath = dirPath + "{0}_{1}".format(schoolName, certID)
+    dirPath = os.path.join(configuration.pdfSavePath, "{}/".format(schoolName))
+    filePath = os.path.join(dirPath, "{0}_{1}".format(schoolName, certID))
 
     if os.path.isdir(dirPath) == False:
         os.mkdir(dirPath)
-        print("mkdir {}".format(dirPath))
+        print("创建文件夹 {}".format(dirPath))
 
-    png2pdf(sourcePath='zout.png', desPath=filePath)
-    print("荣誉证书制作完成_" + certID + "_{}/{}".format(i+1, len(awardInfo)))
+    png2pdf(sourcePath=tempSavePath, desPath=filePath)
+    print("荣誉证书_"+ certID +"_制作完成，进度：{}/{}".format(i+1, len(CertInfo)))
+
+if os.path.isfile(tempSavePath):
+    os.remove(tempSavePath)

@@ -2,6 +2,6 @@ venvs_py/*
 .DS_Store
 .idea/*
 __pycache__/*
-test.py
+preview.py
 Source/NameList/*
 4C2021/*

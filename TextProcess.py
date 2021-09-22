@@ -1,82 +1,53 @@
 from docx.shared import RGBColor
 from PIL import ImageFont
+from config import templateInfo
 
 # 定义字体
-STKaiti = 'Source/Fonts/STKaiti.ttf'
+STKaiti = templateInfo.STKaiti
 
 class TextStyle:
     font_fp = STKaiti
     size = 100
     color = RGBColor(0, 0, 0)
 
+    def __init__(self, pos):
+        self.x = pos[0]
+        self.y = pos[1]
+
     def makeFont(self):
         fonts = ImageFont.truetype(self.font_fp, size=self.size)
         return fonts
 
+    def addText(self, text, img):
+        x = self.x
+        y = self.y
+        font = self.makeFont()
+        img.text((x, y), text, font=font, fill=self.color)
+
 class awardStyle(TextStyle):
-   size = 144
-   color = RGBColor(179, 75, 0)
-
-   def __init__(self, x, y):
-       self.x = x
-       self.y = y
-
-   def addText(self, text, img):
-       x = self.x
-       y = self.y
-       font = self.makeFont()
-       img.text((x, y), text, font=font, fill=self.color)
+   size = templateInfo.awardSize
+   color = templateInfo.awardColor
 
 class bodyStyle(TextStyle):
-   size = 75
-   color = RGBColor(58, 85, 112)
-
-   def __init__(self, x, y):
-       self.x = x
-       self.y = y
-
-   def addText(self, text, img):
-       x = self.x
-       y = self.y
-       font = self.makeFont()
-       img.text((x, y), text, font=font, fill=self.color)
-
+   size = templateInfo.bodySize
+   color = templateInfo.bodyColor
 
 class infoStyle(TextStyle):
-   size = 46
-   color = RGBColor(58, 85, 112)
-
-   def __init__(self, x, y):
-       self.x = x
-       self.y = y
-
-   def addText(self, text, img):
-       x = self.x
-       y = self.y
-       font = self.makeFont()
-       img.text((x, y), text, font=font, fill=self.color)
+   size = templateInfo.infoSize
+   color = templateInfo.infoColor
 
 class dateStyle(TextStyle):
-   size = 56
-   color = RGBColor(58, 85, 112)
+   size = templateInfo.dateSize
+   color = templateInfo.dateColor
 
-   def __init__(self, x, y):
-       self.x = x
-       self.y = y
 
-   def addText(self, text, img):
-       x = self.x
-       y = self.y
-       font = self.makeFont()
-       img.text((x, y), text, font=font, fill=self.color)
-
-AwardTag = awardStyle(1125, 780)
-bodyLine1 = bodyStyle(498, 502)
-bodyLine2 = bodyStyle(370, 604)
-bodyLine3 = bodyStyle(370, 709)
-authorInfo = infoStyle(422, 965)
-teacherInfo = infoStyle(511, 1045)
-classifiedInfo = infoStyle(511, 1124)
-NumInfo = infoStyle(511, 1203)
-yearDate = dateStyle(2200, 1460)
-monDate = dateStyle(2384, 1460)
+awardTag = awardStyle(templateInfo.awardTag_pos)
+bodyLine1 = bodyStyle(templateInfo.bodyLine1_pos)
+bodyLine2 = bodyStyle(templateInfo.bodyLine2_pos)
+bodyLine3 = bodyStyle(templateInfo.bodyLine3_pos)
+authorInfo = infoStyle(templateInfo.authorInfo_pos)
+teacherInfo = infoStyle(templateInfo.teacherInfo_pos)
+classifiedInfo = infoStyle(templateInfo.classifiedInfo_Pos)
+numInfo = infoStyle(templateInfo.numInfo_pos)
+yearDate = dateStyle(templateInfo.yearDate_pos)
+monDate = dateStyle(templateInfo.monDate_pos)

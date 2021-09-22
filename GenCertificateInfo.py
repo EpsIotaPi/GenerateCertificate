@@ -2,10 +2,11 @@ import time
 from TextProcess import *
 from InfoSource import Entries
 from PIL import Image, ImageDraw
+from config import templateInfo, configuration
 
 body_font = ImageFont.truetype(STKaiti, size=75)
 
-testFN = r'Source/Template/BlankTemp.png'
+testFN = templateInfo.tempFileName
 testImg = Image.open(testFN)
 testDraw = ImageDraw.Draw(testImg)
 
@@ -100,10 +101,12 @@ class CertificateInformation:
     def __getDateInfo(self):
         Year  = time.localtime(time.time()).tm_year
         Mon = time.localtime(time.time()).tm_mon
-        return str(Year), str(Mon)
+        if configuration.useLocalTime:
+            return str(Year), str(Mon)
+        return str(configuration.Year), str(configuration.Month)
 
     def addText(self, draw):
-        AwardTag.addText(self.AwardClass, draw)
+        awardTag.addText(self.AwardClass, draw)
 
         L1, L2, L3 = self.__splitBody()
         bodyLine1.addText(L1, draw)
@@ -113,7 +116,7 @@ class CertificateInformation:
         authorInfo.addText(self.author, draw)
         teacherInfo.addText(self.teacher, draw)
         classifiedInfo.addText(self.classified, draw)
-        NumInfo.addText(self.id, draw)
+        numInfo.addText(self.id, draw)
 
         year, month = self.__getDateInfo()
         yearDate.addText(year, draw)
