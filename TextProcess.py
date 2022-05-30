@@ -1,4 +1,5 @@
-from docx.shared import RGBColor
+# from docx.shared import RGBColor
+from PIL.ImageColor import getrgb
 from PIL import ImageFont
 from config import templateInfo
 
@@ -8,7 +9,7 @@ STKaiti = templateInfo.STKaiti
 class TextStyle:
     font_fp = STKaiti
     size = 100
-    color = RGBColor(0, 0, 0)
+    color = getrgb('#000000')
 
     def __init__(self, pos):
         self.x = pos[0]

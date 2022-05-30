@@ -28,7 +28,7 @@ class CertificateInformation:
     def __init__(self, entrie:Entries):
         self.entrie = entrie
         self.AwardClass =  entrie.Entries_award
-        self.bodyText = entrie.Entries_school + '作品《' + entrie.Entries_name + '》在 2021 年（第 14 届）中国大学生计算机设计大赛浙江省级赛中荣获'
+        self.bodyText = entrie.Entries_school + '作品《' + entrie.Entries_name + '》在“虹软杯”2022 年（第 15 届）中国大学生计算机设计大赛浙江省级赛中荣获'
         self.author = nameSplic(entrie.Entries_author)
         self.teacher = nameSplic(entrie.Entries_teacher)
         self.classified = entrie.Entries_classifed

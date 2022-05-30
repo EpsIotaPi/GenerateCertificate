@@ -4,19 +4,16 @@
 
 from GenCertificateInfo import *
 from InfoSource.dealExcel import read_xlsx
-import fitz
+from PIL import Image
 import os
 from config import templateInfo, configuration
 
 
 
 def png2pdf(sourcePath='./', desPath='./out'):
-    imgdoc = fitz.open(sourcePath)
-    pdfBytes = imgdoc.convert_to_pdf()
-    imgpdf = fitz.open('pdf', pdfBytes)
-    if desPath[-4:] != '.pdf':
-        desPath += '.pdf'
-    imgpdf.save(filename=desPath)
+    image_1 = Image.open(sourcePath)
+    im_1 = image_1.convert('RGB')
+    im_1.save(desPath)
 
 tempFileName = templateInfo.tempFileName
 tempSavePath = templateInfo.tempSavePath

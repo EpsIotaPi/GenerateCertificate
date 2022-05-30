@@ -2,6 +2,8 @@ venvs_py/*
 .DS_Store
 .idea/*
 __pycache__/*
-preview.py
+venv/*
+preview.pdf
+zout.png
 Source/NameList/*
 4C2021/*

@@ -1,14 +1,14 @@
 1. 所需依赖包
 
 ```shell
-pip install Pillow python-doxc xlrd==1.2.0 fitz lxml==4.3 networkx==2.0 PyMuPDF
+pip install Pillow xlrd==1.2.0 lxml==4.3 networkx==2.0 PyMuPDF
 
 或
 
 pip install -r requirement.txt
 ```
 
-2. 获奖名单格式（）
+2. 获奖名单格式
 
 | 作品编号   | 作品名称 | 参赛学校         | 作品类别     | 作者1-5 | 指导教师1-2 | 获奖等级 |
 | ---------- | -------- | ---------------- | ------------ | ------- | ----------- | -------- |
