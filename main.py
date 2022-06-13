@@ -40,7 +40,7 @@ for i in range(len(CertInfo)):
     schoolName = newCert.entrie.Entries_school
     certID = newCert.id
     dirPath = os.path.join(configuration.pdfSavePath, "{}/".format(schoolName))
-    filePath = os.path.join(dirPath, "{0}_{1}".format(schoolName, certID))
+    filePath = os.path.join(dirPath, "{0}_{1}.pdf".format(schoolName, certID))
 
     if os.path.isdir(dirPath) == False:
         os.mkdir(dirPath)

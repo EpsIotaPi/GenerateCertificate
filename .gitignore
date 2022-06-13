@@ -6,4 +6,5 @@ venv/*
 preview.pdf
 zout.png
 Source/NameList/*
+!Source/NameList/nameList.xlsx
 4C2021/*
